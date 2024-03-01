@@ -36,6 +36,7 @@ const ProductList = () => {
                                         image={img}
                                         title="green iguana"
                                     />
+                                    
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="div">
                                             {product.productName}
