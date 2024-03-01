@@ -1,0 +1,17 @@
+.navbar{
+    background-color: white;
+    
+}
+.nav-item{
+    padding-right: 50px;
+}
+.container-fluid{
+    width: 1200px;
+}
+a.nav-link{
+    font-weight: 600;
+    color: black;
+    font-size: 1rem;
+}
+
+

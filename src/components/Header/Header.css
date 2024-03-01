@@ -1,0 +1,30 @@
+.input-group{
+    padding: 20px 0px;
+}
+.header{
+    background-color:#7D0A0A;
+}
+.logo{
+    color: white;
+    font-size: xxx-large;
+    text-align: left;
+}
+.container{
+    width: 1200px;
+}
+.header-right{
+    display: flex;
+    padding-top: 19px;
+    justify-content: flex-end;
+}
+.logout-btn, .login-btn{
+    margin-left: 50px;
+}
+.cart-icon{
+    color: white;
+    margin-top: 5px;
+}
+.btn{
+    background-color: #EAD196;
+    border: 0px;
+}

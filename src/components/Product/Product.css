@@ -1,0 +1,13 @@
+.product-container{
+    display: flex;
+    margin: 40px 200px;
+}
+
+.main-container{
+    background-color: #E7F6F2;
+    display: flex;
+}
+
+.card{
+    background-color: #395B64;
+}
