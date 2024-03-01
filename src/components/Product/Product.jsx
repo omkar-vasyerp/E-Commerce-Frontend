@@ -36,7 +36,6 @@ const ProductList = () => {
                                         image={img}
                                         title="green iguana"
                                     />
-                                    
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="div">
                                             {product.productName}
@@ -55,7 +54,7 @@ const ProductList = () => {
                     </Grid>
                 </div>
             ) : (
-                <p>No products available</p>
+                <p>No products available right now !!!</p>
             )}
         </div>
 
