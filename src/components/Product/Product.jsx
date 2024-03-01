@@ -6,33 +6,32 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@mui/material';
+// import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import img from "../../img/mobile.jpeg"
 import './Product.css';
 
-const ProductList = () => {
+const ProductList = ({ searchProduct, setSearchProduct }) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/product')
+        fetch('http://localhost:8080/product?searchKey=' + searchProduct)
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(error => console.error('Error fetching products', error));
-    }, []);
-
-
+    }, [searchProduct]);
 
     return (
         <div className='main-container'>
             {products.length > 0 ? (
                 <div className='product-container'>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                         {products.map(product => (
-                            <Grid  key={product.id} item xs={12} md={4}>
-                                <Card className='card' md={4} sx={{ maxWidth: 345 }}>
+                            <Grid key={product.id}>
+                                <Card sx={{ maxWidth: 345 }}>
                                     <CardMedia
-                                        // component="image"
-                                        sx={{ height: 250, width : 350 }}
+                                        component="img"
+                                        height="194"
                                         image={img}
                                         title="green iguana"
                                     />
@@ -60,6 +59,7 @@ const ProductList = () => {
 
     );
 };
+
 
 export default ProductList;
 
