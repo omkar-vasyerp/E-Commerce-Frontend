@@ -1,13 +1,33 @@
 .product-container{
-    display: flex;
-    margin: 40px 200px;
+    width: 1200px;
+    margin-top: 194px;
+    padding: 0px 50px;
 }
 
 .main-container{
     background-color: #E7F6F2;
     display: flex;
+    justify-content: center;
 }
 
 .card{
     background-color: #395B64;
+}
+.addCart-btn{
+    background-color: #070604;
+  width: 70%;
+  border-radius: 15px;
+}
+.addCart-btn:hover{
+    background-color: #726e67;
+}
+
+.cart-btn{
+    color: white !important;
+}
+a {
+text-decoration: none;
+}
+a:hover{
+    
 }

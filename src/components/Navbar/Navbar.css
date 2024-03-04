@@ -1,6 +1,9 @@
 .navbar{
     background-color: white;
-    
+    position: fixed;
+    top:77px;
+    z-index: 1000;
+    width: 100%;
 }
 .nav-item{
     padding-right: 50px;

@@ -3,6 +3,10 @@
 }
 .header{
     background-color:#7D0A0A;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 .logo{
     color: white;

@@ -13,7 +13,7 @@ export default function NavBar() {
             <Navbar className="navbar" expand="md">
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                        <NavLink href="/components/">Categories</NavLink>
+                        <NavLink href="">Home</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink href="">Laptop</NavLink>
