@@ -31,23 +31,21 @@ const ProductList = ({ searchProduct, setSearchProduct }) => {
         }));
     };
     return (
-
         <div className='main-container'>
             {products.length > 0 ? (
                 <div className='product-container'>
-                    <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    <Grid container spacing={{ xs: 2, md: 2.5 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                         {products.map(product => (
-                            <Grid key={product.productId} item xs={6} sm={4} md={4} >
-                                <Card sx={{ maxWidth: 305, borderRadius: 12,transition: 'transform 0.2s' }}>
+                            <Grid key={product.productId} item xs={6} sm={4} md={3} >
+                                <Card sx={{ maxWidth: 305,transition: 'transform 0.2s' }}>
                                     <a href={`/product/${product.productId}`} >
                                         <CardMedia
                                             component="img"
-                                            // height="394"
+                                             height="245"
                                             image={product.productImage}
                                             sx={{
                                                 objectFit: 'cover',
                                                 p: 2,
-                                                borderRadius: 12,
                                                 transition: 'transform 0.2s'  // Apply the transition to the image as well
                                             }}
                                             onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
@@ -57,10 +55,10 @@ const ProductList = ({ searchProduct, setSearchProduct }) => {
                                             <Typography gutterBottom variant="h5" component="div">
                                                 {product.productName}
                                             </Typography>
-                                            <Typography variant="h6" textAlign={'start'} color="text.secondary">
+                                            <Typography  textAlign={'start'} color="text.secondary">
                                                 {product.productSummary}
                                             </Typography>
-                                            <Typography variant="h6" textAlign={'start'} color="text.secondary">
+                                            <Typography textAlign={'start'} color="text">
                                                 {"$" + product.price}
                                             </Typography>
                                         </CardContent>

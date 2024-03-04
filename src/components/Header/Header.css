@@ -29,6 +29,11 @@
     margin-top: 5px;
 }
 .btn{
-    background-color: #EAD196;
+    background-color:#EAD196;
     border: 0px;
+}
+
+.btn:hover{
+    background-color: #E7F6F2;
+    color:black;
 }

@@ -7,8 +7,6 @@ import { IoCartSharp } from "react-icons/io5";
 
 export default function Header({ searchProduct, setSearchProduct }) {
     return (
-
-
         <div className='header'>
             <div className='container'>
                 <div className="row">
@@ -32,9 +30,8 @@ export default function Header({ searchProduct, setSearchProduct }) {
             </div>
         </div>
     );
-
 }
-let isLoggedIn = true;
+let isLoggedIn = false;
 function Cart() {
     return (
         <div className='header-right'>
@@ -42,7 +39,7 @@ function Cart() {
                 <IoCartSharp size={28} />
             </div>
             <div className='logout-btn'>
-                <a href="/" ><button type="button" className="btn btn-light" >Logout</button></a>
+                <a href="/" ><button type="button" className="btn" >Logout</button></a>
             </div>
         </div>
     );
@@ -51,10 +48,10 @@ function Register() {
     return (
         <div className='header-right'>
             <div className='signup-btn'>
-                <a href="/" ><button type="button" className="btn btn-danger" >SignUp</button></a>
+                <a href="/" ><button type="button" className="btn" >SignUp</button></a>
             </div>
             <div className='login-btn'>
-                <a href="/" ><button type="button" className="btn btn-light" >Login</button></a>
+                <a href="/" ><button type="button" className="btn">Login</button></a>
             </div>
         </div>
     );

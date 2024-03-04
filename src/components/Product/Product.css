@@ -1,7 +1,6 @@
 .product-container{
     width: 1200px;
-    margin-top: 194px;
-    padding: 0px 50px;
+    margin-top: 174px;
 }
 
 .main-container{
@@ -19,7 +18,7 @@
   border-radius: 15px;
 }
 .addCart-btn:hover{
-    background-color: #726e67;
+    background-color:#7D0A0A;
 }
 
 .cart-btn{
@@ -27,7 +26,4 @@
 }
 a {
 text-decoration: none;
-}
-a:hover{
-    
 }
