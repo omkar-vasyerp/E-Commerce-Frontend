@@ -3,9 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
 
 import { IoCartSharp } from "react-icons/io5";
+import { useAppContext } from '../../context/Appcontext';
 
 
-export default function Header({ searchProduct, setSearchProduct }) {
+export default function Header() {
+    const { searchProduct, setSearchProduct } = useAppContext();
     return (
         <div className='header'>
             <div className='container'>
