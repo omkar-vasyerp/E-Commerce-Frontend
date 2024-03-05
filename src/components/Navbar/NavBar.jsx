@@ -3,7 +3,6 @@ import {
     Navbar,
     Nav,
     NavItem,
-    NavLink,
 } from 'reactstrap';
 import './Navbar.css';
 import { Link } from "react-router-dom";
@@ -22,14 +21,18 @@ export default function NavBar({categoryId, setCategoryId}) {
     return (
         <>
             <Navbar className="navbar" expand="md">
-                {categories.map(category=> (
                 <Nav className="mr-auto" navbar>
+
+                    <NavItem>
+                        <Link to="/" onClick={()=>setCategoryId(0)} >Home</Link>
+                    </NavItem>
+                {categories.map(category=> (
                     <NavItem>
                         <Link to="/" onClick={()=>setCategoryId(category.categoryId)}>{category.categoryName}</Link>
                     </NavItem>
         
+        ))}
                 </Nav>
-                    ))}
             </Navbar>
         </>)
 }

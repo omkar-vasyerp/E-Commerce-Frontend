@@ -8,11 +8,10 @@ import Typography from '@mui/material/Typography';
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import './Product.css';
-// import { useParams } from 'react-router-dom';
 
 const ProductList = ({searchProduct, setSearchProduct,categoryId, setCategoryId }) => {
     const [products, setProducts] = useState([]);
-    // const { categoryId } = useParams();
+    
     useEffect(() => {
         fetch('http://localhost:8080/product?categoryId=' +categoryId + '&searchKey=' + searchProduct)
             .then(response => response.json())
