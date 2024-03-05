@@ -48,10 +48,10 @@ function Register() {
     return (
         <div className='header-right'>
             <div className='signup-btn'>
-                <a href="/" ><button type="button" className="btn" >SignUp</button></a>
+                <a href="/sign-up" ><button type="button" className="btn" >SignUp</button></a>
             </div>
             <div className='login-btn'>
-                <a href="/" ><button type="button" className="btn">Login</button></a>
+                <a href="/cart" ><button type="button" className="btn">Login</button></a>
             </div>
         </div>
     );

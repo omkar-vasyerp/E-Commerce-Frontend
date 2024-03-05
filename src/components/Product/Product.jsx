@@ -6,21 +6,19 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import React, { useState, useEffect } from 'react';
-// import Grid from '@mui/material/Grid';
 import Grid from '@mui/material/Unstable_Grid2';
-// import img from "../../img/mobile.jpeg"
 import './Product.css';
+// import { useParams } from 'react-router-dom';
 
-const ProductList = ({ searchProduct, setSearchProduct }) => {
+const ProductList = ({searchProduct, setSearchProduct,categoryId, setCategoryId }) => {
     const [products, setProducts] = useState([]);
-
+    // const { categoryId } = useParams();
     useEffect(() => {
-        fetch('http://localhost:8080/product?categoryId=0&searchKey=' + searchProduct)
+        fetch('http://localhost:8080/product?categoryId=' +categoryId + '&searchKey=' + searchProduct)
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(error => console.error('Error fetching products', error));
-    }, [searchProduct]);
-
+    }, [searchProduct,categoryId]);
 
     const handleAddToCart = (productId) => {
         setProducts(prevProducts => prevProducts.map(product => {
@@ -34,14 +32,15 @@ const ProductList = ({ searchProduct, setSearchProduct }) => {
         <div className='main-container'>
             {products.length > 0 ? (
                 <div className='product-container'>
-                    <Grid container spacing={{ xs: 2, md: 2.5 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    <Grid container spacing={{ xs: 3, md: 2.5 }} columns={{xs: 4, sm: 8, md: 12}}
+                        direction="row">
                         {products.map(product => (
-                            <Grid key={product.productId} item xs={6} sm={4} md={3} >
-                                <Card sx={{ maxWidth: 305,transition: 'transform 0.2s' }}>
+                            <Grid key={product.productId} item='true'>
+                                <Card sx={{ width: 275, maxHeight:485, transition: 'transform 0.2s' }}>
                                     <a href={`/product/${product.productId}`} >
                                         <CardMedia
                                             component="img"
-                                             height="245"
+                                            height="245"
                                             image={product.productImage}
                                             sx={{
                                                 objectFit: 'cover',
@@ -55,7 +54,7 @@ const ProductList = ({ searchProduct, setSearchProduct }) => {
                                             <Typography gutterBottom variant="h5" component="div">
                                                 {product.productName}
                                             </Typography>
-                                            <Typography  textAlign={'start'} color="text.secondary">
+                                            <Typography textAlign={'start'} color="text.secondary">
                                                 {product.productSummary}
                                             </Typography>
                                             <Typography textAlign={'start'} color="text">

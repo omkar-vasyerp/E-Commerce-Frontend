@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState ,useEffect} from "react";
 import {
     Navbar,
     Nav,
@@ -6,28 +6,30 @@ import {
     NavLink,
 } from 'reactstrap';
 import './Navbar.css';
+import { Link } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar({categoryId, setCategoryId}) {
+
+    const [categories, setcategory] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:8080/category')
+            .then(response => response.json())
+            .then(data => setcategory(data))
+            .catch(error => console.error('Error fetching products', error));
+    }, []);
+
+    
     return (
         <>
             <Navbar className="navbar" expand="md">
+                {categories.map(category=> (
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                        <NavLink href="">Home</NavLink>
+                        <Link to="/" onClick={()=>setCategoryId(category.categoryId)}>{category.categoryName}</Link>
                     </NavItem>
-                    <NavItem>
-                        <NavLink href="">Laptop</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="">Mobile</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="">Camera</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="">Accessories</NavLink>
-                    </NavItem>
+        
                 </Nav>
+                    ))}
             </Navbar>
-        </>);
+        </>)
 }
