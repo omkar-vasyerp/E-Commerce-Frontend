@@ -5,11 +5,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import './Product.css';
+import { useAppContext } from '../../context/Appcontext';
 
-const ProductList = ({searchProduct, setSearchProduct,categoryId, setCategoryId }) => {
+const ProductList = () => {
+    const { categoryId, setCategoryId, searchProduct, setSearchProduct } = useAppContext();
     const [products, setProducts] = useState([]);
     
     useEffect(() => {

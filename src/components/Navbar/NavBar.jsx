@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState ,useEffect, useContext} from "react";
 import {
     Navbar,
     Nav,
@@ -6,8 +6,10 @@ import {
 } from 'reactstrap';
 import './Navbar.css';
 import { Link } from "react-router-dom";
+import { useAppContext } from "../../context/Appcontext";
 
-export default function NavBar({categoryId, setCategoryId}) {
+export default function NavBar() {
+    const { categoryId, setCategoryId } = useAppContext();
 
     const [categories, setcategory] = useState([])
     useEffect(() => {
