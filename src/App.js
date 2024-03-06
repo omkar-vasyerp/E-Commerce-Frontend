@@ -5,6 +5,7 @@ import './components/Navbar/Navbar.css';
 import NavBar from './components/Navbar/NavBar';
 import Header from './components/Header/Header';
 
+
 import { createContext, useState } from 'react';
 import SignUp from './components/Forms/SignUp';
 import ProductList from './components/Product/Product';
