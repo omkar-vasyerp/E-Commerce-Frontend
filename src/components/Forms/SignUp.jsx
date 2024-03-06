@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Grid, Paper, Typography } from '@mui/material';
-import './SignUp.css'
+import './SignUp.css';
+import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../context/Appcontext';
+import { register } from '../../service/AccountApi';
+
 const SignUp = () => {
+  const { setLoading } = useAppContext();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
+    firstName: '',
+    lastName: '',
     email: '',
     contact: '',
     password: ''
-
   });
 
   const handleChange = (e) => {
@@ -17,13 +22,14 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your registration logic here
-    console.log('Form submitted:', formData);
+    setLoading(true);
+    register(formData,navigate)
+    setLoading(false);
+
   };
 
   return (
     <div className='signup-container'>
-
       <Container component="main" maxWidth="xs">
         <Paper elevation={3} style={{ padding: 16, marginTop: 64 }}>
           <Typography variant="h5" align="center" gutterBottom>
@@ -35,20 +41,22 @@ const SignUp = () => {
                 <TextField
                   fullWidth
                   label="First Name"
-                  name="firstname"
+                  name="firstName"
+                  type='text'
                   variant="outlined"
                   onChange={handleChange}
-                  value={formData.username}
+                  value={formData.firstName}
                   required
                 />
 
                 <TextField
                   fullWidth
                   label="Last Name"
-                  name="lastname"
+                  name="lastName"
+                  type='text'
                   variant="outlined"
                   onChange={handleChange}
-                  value={formData.username}
+                  value={formData.lastName}
                   required
                   style={{ marginTop: 12 }}
                 />
@@ -56,9 +64,10 @@ const SignUp = () => {
                   fullWidth
                   label="Email"
                   name="email"
+                  type='email'
                   variant="outlined"
                   onChange={handleChange}
-                  value={formData.username}
+                  value={formData.email}
                   required
                   style={{ marginTop: 12 }}
                 />
@@ -66,9 +75,10 @@ const SignUp = () => {
                   fullWidth
                   label="Contact"
                   name="contact"
+                  type='number'
                   variant="outlined"
                   onChange={handleChange}
-                  value={formData.username}
+                  value={formData.contact}
                   required
                   style={{ marginTop: 12 }}
                 />
@@ -77,13 +87,13 @@ const SignUp = () => {
                   label="Password"
                   name="password"
                   variant="outlined"
+                  type="password"
                   onChange={handleChange}
-                  value={formData.username}
+                  value={formData.password}
                   required
                   style={{ marginTop: 12 }}
                 />
               </Grid>
-              {/* ... (other fields) */}
             </Grid>
             <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: 16 }}>
               Register

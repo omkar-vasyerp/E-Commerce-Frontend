@@ -18,8 +18,12 @@
 }
 .header-right{
     display: flex;
-    padding-top: 19px;
-    justify-content: flex-end;
+   align-items: center;
+    justify-content: space-evenly;
+}
+.header-icons{
+    display: flex;
+    justify-content: space-around;
 }
 .logout-btn, .login-btn{
     margin-left: 50px;
@@ -27,6 +31,8 @@
 .cart-icon{
     color: white;
     margin-top: 5px;
+    margin-left: 42px;
+    cursor:pointer;
 }
 .btn{
     background-color:#EAD196;
@@ -36,4 +42,8 @@
 .btn:hover{
     background-color: #E7F6F2;
     color:black;
+}
+.account{
+    color: white;
+    margin-left: 24px;
 }

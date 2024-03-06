@@ -8,40 +8,59 @@ import Typography from '@mui/material/Typography';
 import React, { useState, useEffect, useContext } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import './Product.css';
+import { PacmanLoader, SyncLoader } from 'react-spinners';
 import { useAppContext } from '../../context/Appcontext';
+import { Skeleton } from '@mui/material';
+import { addToCart } from '../../service/CartApi';
+import { getProduct } from '../../service/ProductApi';
+
 
 const ProductList = () => {
-    const { categoryId, setCategoryId, searchProduct, setSearchProduct } = useAppContext();
+    const { categoryId, searchProduct, loading, setLoading } = useAppContext();
     const [products, setProducts] = useState([]);
-    
+
+
     useEffect(() => {
-        fetch('http://localhost:8080/product?categoryId=' +categoryId + '&searchKey=' + searchProduct)
-            .then(response => response.json())
-            .then(data => setProducts(data))
-            .catch(error => console.error('Error fetching products', error));
-    }, [searchProduct,categoryId]);
+        setLoading(true);
+        getProduct(categoryId,searchProduct)
+            .then(data => {
+                setProducts(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching products', error);
+                setLoading(false);
+            });
+    }, [searchProduct, categoryId]);
 
     const handleAddToCart = (productId) => {
         setProducts(prevProducts => prevProducts.map(product => {
             if (product.productId === productId) {
-                return { ...product, addedToCart: !product.addedToCart };
+                const updatedProduct = { ...product, addedToCart: !product.addedToCart };
+                addToCart(updatedProduct);
+                return updatedProduct;
             }
             return product;
         }));
     };
+    
     return (
         <div className='main-container'>
-            {products.length > 0 ? (
+            {loading ? (
+                <div style={{ textAlign: 'center', marginTop: '250px' }}>
+                    <SyncLoader color="#36D7B7" size={15} margin={5} loading={loading} />
+                </div>
+            ) : products.length > 0 ? (
                 <div className='product-container'>
-                    <Grid container spacing={{ xs: 3, md: 2.5 }} columns={{xs: 4, sm: 8, md: 12}}
+                    <Grid container spacing={{ xs: 3, md: 2.5 }} columns={{ xs: 4, sm: 8, md: 12 }}
                         direction="row">
                         {products.map(product => (
                             <Grid key={product.productId} item='true'>
-                                <Card sx={{ width: 275, maxHeight:485, transition: 'transform 0.2s' }}>
+                                <Card sx={{ width: 215,  transition: 'transform 0.2s' }}>
                                     <a href={`/product/${product.productId}`} >
                                         <CardMedia
                                             component="img"
-                                            height="245"
+                                            height="200"
                                             image={product.productImage}
                                             sx={{
                                                 objectFit: 'cover',
@@ -52,13 +71,13 @@ const ProductList = () => {
                                             onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                                         />
                                         <CardContent >
-                                            <Typography gutterBottom variant="h5" component="div">
+                                            <Typography gutterBottom variant="h7" component="div">
                                                 {product.productName}
                                             </Typography>
-                                            <Typography textAlign={'start'} color="text.secondary">
+                                            <Typography textAlign={'start'} fontSize={15} color="text.secondary">
                                                 {product.productSummary}
                                             </Typography>
-                                            <Typography textAlign={'start'} color="text">
+                                            <Typography textAlign={'start'}  color="text">
                                                 {"$" + product.price}
                                             </Typography>
                                         </CardContent>

@@ -11,6 +11,7 @@ import ProductList from './components/Product/Product';
 import { BrowserRouter as BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import { AppProvider } from './context/Appcontext';
+import Login from './components/Forms/Login';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path='/login' element={<Login />}/>
           <Route path="/" element={<ProductList  />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
