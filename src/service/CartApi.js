@@ -44,7 +44,7 @@ export const removeFromCart = async (productId) => {
     }
 };
 
-export const getCartDetails = async (userId) => {
+export const getCartDetails = async () => {
     try {
         const response = await fetch(`http://localhost:8080/cart?userId=1`);
         if (response.ok) {

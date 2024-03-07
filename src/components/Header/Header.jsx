@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
 
@@ -6,16 +6,27 @@ import { IoCartSharp } from "react-icons/io5";
 import { useAppContext } from '../../context/Appcontext';
 import Account from '../Account/Account';
 import { useNavigate } from 'react-router-dom';
+import { getCartDetails } from '../../service/CartApi';
 
 
 export default function Header() {
-    const { searchProduct, setSearchProduct,cartDetails, setCartDetails,setCategoryId } = useAppContext();
+    const { searchProduct, setSearchProduct,cartDetails,setCartDetails,setCategoryId } = useAppContext();
     const [cartCount, setCartCount] = useState(1);
 
     let isLoggedIn = true;
     const navigate = useNavigate();
 
-    
+    useEffect(()=>{
+        getCartDetails()
+        .then(data => {
+            setCartDetails(data);
+            const totalItems=cartDetails.totalQuantities;
+            setCartCount(totalItems);
+        })
+        .catch(error => {
+            console.error('Error fetching Cart', error);
+        });
+    },[setCartDetails])
 
     return (
         <div className='header'>
@@ -51,8 +62,8 @@ export default function Header() {
         }
         return (
             <div className='header-icons'>
-                <div className='cart-icon' onClick={handleClick}>
-                    <IoCartSharp size={28} />
+                <div className='cart-icon' >
+                    <IoCartSharp size={28} onClick={handleClick}/>
                     {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
                 </div>
                 <Account />
