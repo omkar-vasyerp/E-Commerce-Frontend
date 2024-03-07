@@ -5,12 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import './Product.css';
-import { PacmanLoader, SyncLoader } from 'react-spinners';
+import { SyncLoader } from 'react-spinners';
 import { useAppContext } from '../../context/Appcontext';
-import { Skeleton } from '@mui/material';
 import { addToCart } from '../../service/CartApi';
 import { getProduct } from '../../service/ProductApi';
 
@@ -88,7 +87,7 @@ const ProductList = () => {
                                             handleAddToCart(product.productId);
                                         }}>
                                             <Button className='cart-btn' >
-                                                {product.addedToCart ? 'Added To Cart' : 'Add To Cart'}
+                                                Add To Cart
                                             </Button>
                                         </a>
                                     </CardActions>

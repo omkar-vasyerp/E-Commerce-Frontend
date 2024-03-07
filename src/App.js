@@ -4,12 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/Navbar/Navbar.css';
 import NavBar from './components/Navbar/NavBar';
 import Header from './components/Header/Header';
-
-
-import { createContext, useState } from 'react';
 import SignUp from './components/Forms/SignUp';
 import ProductList from './components/Product/Product';
-import { BrowserRouter as BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import { AppProvider } from './context/Appcontext';
 import Login from './components/Forms/Login';

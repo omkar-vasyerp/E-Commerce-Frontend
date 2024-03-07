@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Container, Grid, Paper, Typography } from '@mui/material';
 // Replace with the actual path
 import './Login.css';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/Appcontext';
 import { login } from '../../service/AccountApi';
 

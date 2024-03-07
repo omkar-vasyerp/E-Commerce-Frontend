@@ -10,8 +10,11 @@
 }
 .logo{
     color: white;
-    font-size: xxx-large;
     text-align: left;
+}
+.logo span{
+    font-size: xxx-large;
+    cursor: pointer;
 }
 .container{
     width: 1200px;
@@ -33,6 +36,16 @@
     margin-top: 5px;
     margin-left: 42px;
     cursor:pointer;
+}
+.cart-count{
+    position: absolute;
+    background-color: #0d6efd;
+    color: rgb(255 247 247);
+    border-radius: 50%;
+    padding: 0px 5px;
+    font-size: 12px;
+    font-weight: bolder;
+    margin-left: -8px;
 }
 .btn{
     background-color:#EAD196;

@@ -6,10 +6,9 @@ import { SyncLoader } from 'react-spinners';
 import { getCartDetails, removeFromCart } from '../../service/CartApi';
 export default function Cart() {
 
-    const { loading, setLoading } = useAppContext();
-    const [cartDetails, setCartDetails] = useState([]);
+    const { loading, setLoading,cartDetails, setCartDetails } = useAppContext();
     const [cartUpdated, setCartUpdated] = useState(false);
-
+    
     const getCart=()=>{
         getCartDetails()
         .then(data => {

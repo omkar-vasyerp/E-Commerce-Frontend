@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
 
@@ -9,17 +9,20 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Header() {
-    const { searchProduct, setSearchProduct } = useAppContext();
-    const { setCategoryId } = useAppContext();
+    const { searchProduct, setSearchProduct,cartDetails, setCartDetails,setCategoryId } = useAppContext();
+    const [cartCount, setCartCount] = useState(1);
+
     let isLoggedIn = true;
     const navigate = useNavigate();
-   
+
+    
+
     return (
         <div className='header'>
             <div className='container'>
                 <div className="row">
-                    <div className="col logo" style={{ cursor: 'pointer' }} onClick={()=>{navigate("/"); setCategoryId(0);}}>
-                        LOGO
+                    <div className="col logo" >
+                        <span onClick={()=>{navigate("/"); setCategoryId(0);}}>LOGO</span>
                     </div>
                     <div className="col header-right">
                         <div>
@@ -40,7 +43,7 @@ export default function Header() {
             </div>
         </div>
     );
-
+    
 
     function Cart() {
         const handleClick = () => {
@@ -50,6 +53,7 @@ export default function Header() {
             <div className='header-icons'>
                 <div className='cart-icon' onClick={handleClick}>
                     <IoCartSharp size={28} />
+                    {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
                 </div>
                 <Account />
             </div>
