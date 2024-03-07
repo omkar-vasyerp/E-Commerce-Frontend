@@ -18,7 +18,6 @@ const ProductList = () => {
     const { categoryId, searchProduct, loading, setLoading } = useAppContext();
     const [products, setProducts] = useState([]);
 
-
     useEffect(() => {
         setLoading(true);
         getProduct(categoryId,searchProduct)
@@ -56,8 +55,8 @@ const ProductList = () => {
                         {products.map(product => (
                             <Grid key={product.productId} item='true'>
                                 <Card sx={{ width: 215,  transition: 'transform 0.2s' }}>
-                                    <a href={`/product/${product.productId}`} >
-                                        <CardMedia
+                                    <a href={`/product-detail`} >
+                                        <CardMedia onClick={`/`}
                                             component="img"
                                             height="200"
                                             image={product.productImage}

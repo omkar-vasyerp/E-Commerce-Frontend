@@ -10,6 +10,7 @@ import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import { AppProvider } from './context/Appcontext';
 import Login from './components/Forms/Login';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/login' element={<Login />}/>
           <Route path="/" element={<ProductList  />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/product-detail" element={<ProductDetail />} />
         </Routes>
         </AppProvider>
       </BrowserRouter>

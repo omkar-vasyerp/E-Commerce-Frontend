@@ -29,6 +29,7 @@ const SignUp = () => {
   };
 
   return (
+    <div className='main-container'>
     <div className='signup-container'>
       <Container component="main" maxWidth="xs">
         <Paper elevation={3} style={{ padding: 16, marginTop: 64 }}>
@@ -71,6 +72,7 @@ const SignUp = () => {
                   required
                   style={{ marginTop: 12 }}
                 />
+                
                 <TextField
                   fullWidth
                   label="Contact"
@@ -101,7 +103,7 @@ const SignUp = () => {
           </form>
         </Paper>
       </Container>
-
+      </div>
     </div>
   );
 };

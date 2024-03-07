@@ -11,12 +11,12 @@ import { getCartDetails } from '../../service/CartApi';
 
 export default function Header() {
     const { searchProduct, setSearchProduct,cartDetails,setCartDetails,setCategoryId } = useAppContext();
-    const [cartCount, setCartCount] = useState(1);
+    const [cartCount, setCartCount] = useState(0);
 
     let isLoggedIn = true;
     const navigate = useNavigate();
 
-    useEffect(()=>{
+    useEffect((setCartDetails,setCartCount)=>{
         getCartDetails()
         .then(data => {
             setCartDetails(data);
@@ -26,7 +26,7 @@ export default function Header() {
         .catch(error => {
             console.error('Error fetching Cart', error);
         });
-    },[setCartDetails])
+    },[setCartDetails,setCartCount])
 
     return (
         <div className='header'>
