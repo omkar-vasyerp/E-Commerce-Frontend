@@ -19,17 +19,15 @@ export default function NavBar() {
             .catch(error => console.error('Error fetching products', error));
     }, []);
 
-    
     return (
         <>
             <Navbar className="navbar" expand="md">
                 <Nav className="mr-auto" navbar>
-
                     <NavItem>
                         <Link to="/" onClick={()=>setCategoryId(0)} >Home</Link>
                     </NavItem>
                 {categories.map(category=> (
-                    <NavItem>
+                    <NavItem key={category.categoryId}>
                         <Link to="/" onClick={()=>setCategoryId(category.categoryId)}>{category.categoryName}</Link>
                     </NavItem>
         

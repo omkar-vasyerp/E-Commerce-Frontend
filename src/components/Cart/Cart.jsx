@@ -4,11 +4,14 @@ import { Container, Paper, Typography, Button, Table, TableBody, TableCell, Tabl
 import { useAppContext } from '../../context/Appcontext';
 import { SyncLoader } from 'react-spinners';
 import { getCartDetails, removeFromCart } from '../../service/CartApi';
+import { placeOrder } from '../../service/OrderApi';
+import { useNavigate } from 'react-router-dom';
 export default function Cart() {
 
     const { loading, setLoading,cartDetails, setCartDetails } = useAppContext();
     const [cartUpdated, setCartUpdated] = useState(false);
-    
+
+    const navigate =useNavigate();
     const getCart=()=>{
         getCartDetails()
         .then(data => {
@@ -35,6 +38,10 @@ export default function Cart() {
             getCart()
         }
     }, [cartUpdated, setLoading]);
+
+    const checkOutOrder=()=>{
+        placeOrder(cartDetails, navigate);
+    }
 
     return (
         <div className='cart-container'>
@@ -83,7 +90,7 @@ export default function Cart() {
                                 Total Items: {cartDetails.totalQuantities}
                             </Typography>
                             <Typography variant="h6" style={{ marginRight: 100, textAlign: 'end' }}>Total Price: ${cartDetails.totalPrice.toFixed(2)}</Typography>
-                            <Button variant="contained" color="primary" style={{ marginTop: 16 }}>
+                            <Button variant="contained" onClick={()=>checkOutOrder()} color="primary" style={{ marginTop: 16 }}>
                                 Checkout
                             </Button>
                         </>
