@@ -18,7 +18,7 @@ export default function NavBar() {
             .then(data => setcategory(data))
             .catch(error => console.error('Error fetching products', error));
     }, []);
-
+ 
     return (
         <>
             <Navbar className="navbar" expand="md">

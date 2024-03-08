@@ -12,11 +12,13 @@ import { SyncLoader } from 'react-spinners';
 import { useAppContext } from '../../context/Appcontext';
 import { addToCart } from '../../service/CartApi';
 import { getProduct } from '../../service/ProductApi';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const ProductList = () => {
     const { categoryId, searchProduct, loading, setLoading } = useAppContext();
     const [products, setProducts] = useState([]);
+    const navigate=useNavigate();
 
     useEffect(() => {
         setLoading(true);
@@ -55,10 +57,10 @@ const ProductList = () => {
                         {products.map(product => (
                             <Grid key={product.productId} item='true'>
                                 <Card sx={{ width: 215,  transition: 'transform 0.2s' }}>
-                                    <a href={`/product-detail`} >
-                                        <CardMedia onClick={`/`}
+                                <Link to={`/product-detail/${product.productId}`}>
+                                        <CardMedia
                                             component="img"
-                                            height="200"
+                                            height="200"    
                                             image={product.productImage}
                                             sx={{
                                                 objectFit: 'cover',
@@ -79,7 +81,7 @@ const ProductList = () => {
                                                 {"$" + product.price}
                                             </Typography>
                                         </CardContent>
-                                    </a>
+                                    </Link>
                                     <CardActions sx={{ justifyContent: 'center', marginTop: -2, marginBottom: 2 }}>
                                         <a className='addCart-btn' href='/' onClick={(e) => {
                                             e.preventDefault();
