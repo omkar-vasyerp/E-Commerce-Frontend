@@ -18,7 +18,6 @@ import { Link, useNavigate } from 'react-router-dom';
 const ProductList = () => {
     const { categoryId, searchProduct, loading, setLoading } = useAppContext();
     const [products, setProducts] = useState([]);
-    const navigate=useNavigate();
 
     useEffect(() => {
         setLoading(true);
