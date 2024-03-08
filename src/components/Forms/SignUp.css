@@ -1,4 +1,12 @@
+body{
+    display: flex;
+    background-color: #E7F6F2;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
 .signup-container{
-    width: 1200px;
-    margin-top: 174px;
+    width: 1200px; 
+    margin: 114px 0px 50px 150px;
+    justify-content: center; 
 }
