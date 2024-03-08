@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState } from "react";
 
 
@@ -14,8 +13,8 @@ function ProductDetail(){
     }, [setProductDetail]);
     return(
         <div>
-        {productDetails.map(ProductDetail=> (
-                <div>hi</div>
+        {productDetails.map(productDetail=> (
+                <div>productDetail.productImage</div>
             ))}
             
         </div>)
