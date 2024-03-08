@@ -33,15 +33,18 @@ export const getOrders = async () => {
             },
         });
 
+        console.log('Response status:', response.status);
+
         if (response.ok) {
-            console.log(response);
-            return response.json();
+            const data = await response.json();
+            console.log('Response data:', data);
+            return data;
         } else {
             console.error('Server error:', response.status);
             return null;
         }
     } catch (error) {
-        console.error('Error, Order Not Placed:', error);
+        console.error('Error fetching orders:', error);
         return null;
     }
 };
