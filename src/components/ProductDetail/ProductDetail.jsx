@@ -1,23 +1,29 @@
-
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-
-function ProductDetail(){
-    const [productDetails, setProductDetail] = useState([])
-
+const ProductDetail = () => {
+    const [product, setProduct] = useState()
+    const { id } = useParams();
     useEffect(() => {
-        fetch('http://localhost:8080/product/1')
+        fetch(`http://localhost:8080/product/${id}`)
             .then(response => response.json())
-            .then(data => setProductDetail(data))
+            .then(data => setProduct(data))
             .catch(error => console.error('Error fetching products', error));
-    }, [setProductDetail]);
-    return(
+
+    }, [setProduct]);
+    return (
+        <>
+            {product ? (
         <div>
-        {productDetails.map(productDetail=> (
-                <div>productDetail.productImage</div>
-            ))}
+          <img src={product.productImage} alt="Product" />
+          {/* Render other product details here */}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
             
-        </div>)
+        </>
+    )
 }
 
 export default ProductDetail;
