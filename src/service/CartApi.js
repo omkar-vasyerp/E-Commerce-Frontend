@@ -25,18 +25,19 @@ try {
 
 export const removeFromCart = async (productId) => {
    
-    const cartUrl = `http://localhost:8080/cart/${productId}?userId=1`;
+    const cartUrl = `http://localhost:8080/cart?userId=1&productId=${productId}`;
     try {
         const response = await fetch(cartUrl, {
-            method: 'POST',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
         }); 
-
-        if (!response.ok) {
+        if (response.ok) {
+            
+            console.log('Cart updated on server:', response);
+        } else {
             console.error('Server error:', response.status);
-       
         }
     } catch (error) {
         console.error('Error updating cart on server:', error);
