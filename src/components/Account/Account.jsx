@@ -21,7 +21,7 @@ const Account = () => {
             <ListItem button >
                 <ListItemText primary="My Profile" />
             </ListItem>
-            <ListItem button onClick={handleLogout()}>
+            <ListItem button onClick={()=>{navigate("/my-orders")}}>
                 <ListItemText primary="My Orders" />
             </ListItem>
             <ListItem button onClick={handleLogout()}>
