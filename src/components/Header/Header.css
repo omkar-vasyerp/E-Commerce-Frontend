@@ -16,9 +16,7 @@
     font-size: xxx-large;
     cursor: pointer;
 }
-.container{
-    /* width: 1200px; */
-}
+
 .header-right{
     display: flex;
    align-items: center;

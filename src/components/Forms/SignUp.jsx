@@ -3,7 +3,7 @@ import { TextField, Button, Container, Grid, Paper, Typography } from '@mui/mate
 import './SignUp.css';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/Appcontext';
-import { register } from '../../service/AccountApi';
+import { Register } from '../../service/AccountApi';
 
 const SignUp = () => {
   const { setLoading } = useAppContext();
@@ -23,7 +23,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    register(formData,navigate)
+    Register(formData,navigate)
     setLoading(false);
 
   };

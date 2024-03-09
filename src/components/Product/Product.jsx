@@ -10,9 +10,9 @@ import Grid from '@mui/material/Unstable_Grid2';
 import './Product.css';
 import { SyncLoader } from 'react-spinners';
 import { useAppContext } from '../../context/Appcontext';
-import { addToCart } from '../../service/CartApi';
-import { getProduct } from '../../service/ProductApi';
-import { Link, useNavigate } from 'react-router-dom';
+import { AddToCart } from '../../service/CartApi';
+import { GetProduct } from '../../service/ProductApi';
+import { Link} from 'react-router-dom';
 
 
 const ProductList = () => {
@@ -21,7 +21,7 @@ const ProductList = () => {
 
     useEffect(() => {
         setLoading(true);
-        getProduct(categoryId,searchProduct)
+        GetProduct(categoryId,searchProduct)
             .then(data => {
                 setProducts(data);
                 setLoading(false);
@@ -30,13 +30,13 @@ const ProductList = () => {
                 console.error('Error fetching products', error);
                 setLoading(false);
             });
-    }, [searchProduct, categoryId]);
+    }, [searchProduct, setLoading,categoryId]);
 
     const handleAddToCart = (productId) => {
         setProducts(prevProducts => prevProducts.map(product => {
             if (product.productId === productId) {
                 const updatedProduct = { ...product, addedToCart: !product.addedToCart };
-                addToCart(updatedProduct);
+                AddToCart(updatedProduct);
                 return updatedProduct;
             }
             return product;
@@ -55,11 +55,11 @@ const ProductList = () => {
                         direction="row">
                         {products.map(product => (
                             <Grid key={product.productId} item='true'>
-                                <Card sx={{ width: 215,  transition: 'transform 0.2s' }}>
+                                <Card sx={{ width: 315,  transition: 'transform 0.2s' }}>
                                 <Link to={`/product-detail/${product.productId}`}>
                                         <CardMedia
                                             component="img"
-                                            height="200"    
+                                            height="300"    
                                             image={product.productImage}
                                             sx={{
                                                 objectFit: 'cover',
@@ -73,11 +73,13 @@ const ProductList = () => {
                                             <Typography gutterBottom variant="h7" component="div">
                                                 {product.productName}
                                             </Typography>
-                                            <Typography textAlign={'start'} fontSize={15} color="text.secondary">
-                                                {product.productSummary}
-                                            </Typography>
+                                            {/* <Typography textAlign={'start'} fontSize={15} color="text.secondary">
+                                                {/* {product.productSummary} }
+                                                <li>highlight no. 1</li>
+                                                <li>highlight no. 2</li>
+                                            </Typography> */}
                                             <Typography textAlign={'start'}  color="text">
-                                                {"$" + product.price}
+                                                &#8377;{product.price}
                                             </Typography>
                                         </CardContent>
                                     </Link>

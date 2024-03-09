@@ -1,4 +1,4 @@
-export const addToCart = async (updatedProduct) => {
+export const AddToCart = async (updatedProduct) => {
     const cartUrl = `http://localhost:8080/cart?userId=1`;
 const addToCartDto = {
     'productId': updatedProduct.productId, 
@@ -23,7 +23,7 @@ try {
     }
 };
 
-export const removeFromCart = async (productId) => {
+export const RemoveFromCart = async (productId) => {
    
     const cartUrl = `http://localhost:8080/cart?userId=1&productId=${productId}`;
     try {
@@ -45,7 +45,7 @@ export const removeFromCart = async (productId) => {
     }
 };
 
-export const getCartDetails = async () => {
+export const GetCartDetails = async () => {
     try {
         const response = await fetch(`http://localhost:8080/cart?userId=1`);
         if (response.ok) {

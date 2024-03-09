@@ -1,21 +1,14 @@
-body {
-    height: 670px;
+.main-container {
+     margin-Top: 154px;
     display: flex;
-    align-items: center;
-    width: auto;
+     justify-Content: center; 
+      min-Height: 100vh;
 }
 
 .product-container {
-    height: 100%;
+    width: 93%;
 }
 
-.main-container {
-    background-color: #E7F6F2;
-    width: 1519px;
-    height: auto;
-    padding-left: 75px;
-    display: flex;
-}
 
 .addCart-btn {
     background-color: #070604;

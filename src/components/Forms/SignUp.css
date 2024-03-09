@@ -1,8 +1,6 @@
 body{
-    display: flex;
     background-color: #E7F6F2;
-    /* justify-content: center; */
-    /* align-items: center; */
+   
 }
 
 .signup-container{

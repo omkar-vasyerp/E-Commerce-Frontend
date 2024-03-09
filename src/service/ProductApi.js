@@ -1,5 +1,5 @@
 
-export const getProduct=async(categoryId,searchProduct)=>{
+export const GetProduct=async(categoryId,searchProduct)=>{
     try {
         const response = await fetch('http://localhost:8080/product?categoryId=' + categoryId + '&searchKey=' + searchProduct);
         if (response.ok) {

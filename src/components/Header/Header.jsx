@@ -6,7 +6,7 @@ import { IoCartSharp } from "react-icons/io5";
 import { useAppContext } from '../../context/Appcontext';
 import Account from '../Account/Account';
 import { useNavigate } from 'react-router-dom';
-import { getCartDetails } from '../../service/CartApi';
+import { GetCartDetails } from '../../service/CartApi';
 
 
 function Header() {
@@ -18,7 +18,7 @@ function Header() {
 
     //Not Working properly
     useEffect(() => {
-        getCartDetails()
+        GetCartDetails()
             .then(data => {
                 setCartDetails(data);
                 const totalItems = cartDetails.totalQuantities;
@@ -27,7 +27,7 @@ function Header() {
             .catch(error => {
                 console.error('Error fetching Cart', error);
             });
-    }, [setCartDetails])
+    }, [setCartDetails,setCartCount])
 
     return (
         <div className='header'>

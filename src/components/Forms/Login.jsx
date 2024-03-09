@@ -4,10 +4,11 @@ import { TextField, Button, Container, Grid, Paper, Typography } from '@mui/mate
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/Appcontext';
-import { login } from '../../service/AccountApi';
+import { Login1 } from '../../service/AccountApi';
 
 const Login = () => {
     const { setLoading } = useAppContext();
+
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        login(formData,setFormData,navigate)
+        Login1(formData,setFormData,navigate)
         setLoading(false);
 
     };
@@ -63,12 +64,11 @@ const Login = () => {
                             </Grid>
                         </Grid>
                         <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: 16 }}>
-                            Register
+                            Login
                         </Button>
                     </form>
                 </Paper>
             </Container>
-
         </div>
     );
 };

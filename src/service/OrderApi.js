@@ -1,10 +1,11 @@
-export const placeOrder = async (cartDetails, navigate) => {
+export const PlaceOrder = async (cartDetails, navigate) => {
     const orderUrl = `http://localhost:8080/order?userId=1`;
     try {
         const response = await fetch(orderUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization':`Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXlAZ21haWwuY29tIiwiZXhwIjoxNzEwMDA1MTIyLCJpYXQiOjE3MTAwMDE1MjJ9.75aufH70iVL6FIT9UIHaByg9HdxO8dbJUL0fxCWnYyY`
             },
             body: JSON.stringify(cartDetails)
         });
@@ -21,7 +22,7 @@ export const placeOrder = async (cartDetails, navigate) => {
     }
 };
 
-export const getOrders = async () => {
+export const GetOrders = async () => {
     const orderUrl = `http://localhost:8080/order/1`;
 
     try {
@@ -29,6 +30,7 @@ export const getOrders = async () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization':`Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXlAZ21haWwuY29tIiwiZXhwIjoxNzEwMDA1MTIyLCJpYXQiOjE3MTAwMDE1MjJ9.75aufH70iVL6FIT9UIHaByg9HdxO8dbJUL0fxCWnYyY`,
             },
         });
 
