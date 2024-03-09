@@ -3,11 +3,12 @@ import { TextField, Button, Container, Grid, Paper, Typography } from '@mui/mate
 import './SignUp.css';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/Appcontext';
-import { Register } from '../../service/AccountApi';
+import AccountApi from '../../service/AccountApi';
 
 const SignUp = () => {
   const { setLoading } = useAppContext();
   const navigate = useNavigate();
+  const {Register} = AccountApi();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',

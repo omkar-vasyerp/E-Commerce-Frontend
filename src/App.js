@@ -12,11 +12,13 @@ import { AppProvider } from './context/Appcontext';
 import Login from './components/Forms/Login';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import MyOrder from './components/Order/MyOrder';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <AuthProvider>
       <AppProvider>
         <Header  />
         <NavBar />
@@ -29,6 +31,7 @@ function App() {
           <Route path="/my-orders" element={<MyOrder />} />
         </Routes>
         </AppProvider>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );

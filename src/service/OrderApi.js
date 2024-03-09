@@ -1,11 +1,16 @@
-export const PlaceOrder = async (cartDetails, navigate) => {
+import { useAuthContext } from "../context/AuthContext";
+
+export default function OrderApi(){
+const {token } = useAuthContext();
+
+const PlaceOrder = async (cartDetails, navigate) => {
     const orderUrl = `http://localhost:8080/order?userId=1`;
     try {
         const response = await fetch(orderUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization':`Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXlAZ21haWwuY29tIiwiZXhwIjoxNzEwMDA1MTIyLCJpYXQiOjE3MTAwMDE1MjJ9.75aufH70iVL6FIT9UIHaByg9HdxO8dbJUL0fxCWnYyY`
+                'Authorization':`Bearer ${token}`
             },
             body: JSON.stringify(cartDetails)
         });
@@ -22,7 +27,7 @@ export const PlaceOrder = async (cartDetails, navigate) => {
     }
 };
 
-export const GetOrders = async () => {
+ const GetOrders = async () => {
     const orderUrl = `http://localhost:8080/order/1`;
 
     try {
@@ -30,11 +35,11 @@ export const GetOrders = async () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization':`Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXlAZ21haWwuY29tIiwiZXhwIjoxNzEwMDA1MTIyLCJpYXQiOjE3MTAwMDE1MjJ9.75aufH70iVL6FIT9UIHaByg9HdxO8dbJUL0fxCWnYyY`,
+                'Authorization':`Bearer ${token}`,
             },
         });
 
-        // console.log('Response status:', response.status);
+        
 
         if (response.ok) {
             const data = await response.json();
@@ -49,3 +54,8 @@ export const GetOrders = async () => {
         return null;
     }
 };
+return{
+    GetOrders,
+    PlaceOrder
+}
+}

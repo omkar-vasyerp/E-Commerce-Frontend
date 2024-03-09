@@ -3,15 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { Container, Paper, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { useAppContext } from '../../context/Appcontext';
 import { SyncLoader } from 'react-spinners';
-import { GetCartDetails, RemoveFromCart } from '../../service/CartApi';
-import { PlaceOrder } from '../../service/OrderApi';
 import { useNavigate } from 'react-router-dom';
+import CartApi from '../../service/CartApi';
+import OrderApi from '../../service/OrderApi';
 export default function Cart() {
 
     const { loading, setLoading,cartDetails, setCartDetails } = useAppContext();
     const [cartUpdated, setCartUpdated] = useState(false);
-
+    const{RemoveFromCart,GetCartDetails}=CartApi();
     const navigate =useNavigate();
+    const {PlaceOrder} = OrderApi();
     const getCart=()=>{
         GetCartDetails()
         .then(data => {

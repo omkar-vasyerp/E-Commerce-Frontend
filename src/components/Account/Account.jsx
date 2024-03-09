@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Popover, List, ListItem, ListItemText } from '@mui/material';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import {  useNavigate } from 'react-router-dom';
-// import { useAuthContext } from '../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 const Account = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    // const {token}=useAuthContext();
+    const {token,logout}=useAuthContext();
     const navigate = useNavigate();
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
@@ -14,10 +14,11 @@ const Account = () => {
         setAnchorEl(null);
     };
     const handleLogout = () => {
-
+        logout();
+        navigate('/login')
     };
 
-    let loggedIn=false;
+    let loggedIn=!!token;
 
     const loggedInDropdown = (
         <List>
@@ -27,7 +28,7 @@ const Account = () => {
             <ListItem button onClick={()=>{navigate("/my-orders")}}>
                 <ListItemText primary="My Orders" />
             </ListItem>
-            <ListItem button onClick={handleLogout()}>
+            <ListItem button onClick={()=>handleLogout()}>
                 <ListItemText primary="Logout" />
             </ListItem>
         </List>

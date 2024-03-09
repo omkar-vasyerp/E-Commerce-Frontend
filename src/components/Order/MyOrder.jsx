@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import './MyOrder.css';
 import { useAppContext } from "../../context/Appcontext";
-import { GetOrders } from "../../service/OrderApi";
 import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Button, Container, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import { SyncLoader } from "react-spinners";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import OrderApi from "../../service/OrderApi";
 
 export default function MyOrder() {
     const [orderDetails, setOrderDetails] = useState();
     const { loading, setLoading } = useAppContext();
     const [expanded, setExpanded] = useState(null);
+    const {GetOrders} = OrderApi();
 
     useEffect(() => {
         const fetchOrders = async () => {

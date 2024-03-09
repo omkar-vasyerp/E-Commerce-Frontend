@@ -10,7 +10,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import './Product.css';
 import { SyncLoader } from 'react-spinners';
 import { useAppContext } from '../../context/Appcontext';
-import { AddToCart } from '../../service/CartApi';
+import CartApi  from '../../service/CartApi';
 import { GetProduct } from '../../service/ProductApi';
 import { Link} from 'react-router-dom';
 
@@ -18,7 +18,7 @@ import { Link} from 'react-router-dom';
 const ProductList = () => {
     const { categoryId, searchProduct, loading, setLoading } = useAppContext();
     const [products, setProducts] = useState([]);
-
+    const{AddToCart} =CartApi();
     useEffect(() => {
         setLoading(true);
         GetProduct(categoryId,searchProduct)

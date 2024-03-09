@@ -4,13 +4,13 @@ import { TextField, Button, Container, Grid, Paper, Typography } from '@mui/mate
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/Appcontext';
-import { Login1 } from '../../service/AccountApi';
+import AccountApi from '../../service/AccountApi';
 
 const Login = () => {
     const { setLoading } = useAppContext();
 
     const navigate = useNavigate();
-
+    const {Login1} = AccountApi();
     const [formData, setFormData] = useState({
         email: '',
         password: ''

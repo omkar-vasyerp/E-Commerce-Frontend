@@ -6,14 +6,16 @@ import { IoCartSharp } from "react-icons/io5";
 import { useAppContext } from '../../context/Appcontext';
 import Account from '../Account/Account';
 import { useNavigate } from 'react-router-dom';
-import { GetCartDetails } from '../../service/CartApi';
+import CartApi from '../../service/CartApi';
+import { useAuthContext } from '../../context/AuthContext';
 
 
 function Header() {
     const { searchProduct, setSearchProduct, cartDetails, setCartDetails, setCategoryId } = useAppContext();
     const [cartCount, setCartCount] = useState(1);
-
-    let isLoggedIn = true;
+    const{token}=useAuthContext();
+    const{GetCartDetails} =CartApi();
+    let isLoggedIn =!!token;
     const navigate = useNavigate();
 
     //Not Working properly
