@@ -3,14 +3,14 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    width: 80%;
+    /* width: 80%; */
 }
 
 .main-container{
     background-color: #E7F6F2;
     display: flex;
     justify-content: center;
-    width: 100%;
+    /* width: 100%; */
     height: auto; 
 }
 

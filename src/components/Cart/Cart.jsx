@@ -78,7 +78,7 @@ export default function Cart() {
                                                 <TableCell>${item.unitPrice.toFixed(2)}</TableCell>
                                                 <TableCell>${item.price.toFixed(2)}</TableCell>
                                                 <TableCell onClick={() => handleRemoveFromCart(item.productId)}> <Button variant="outlined" color="secondary">
-                                                    Remove
+                                                    Remove  
                                                 </Button></TableCell>
                                             </TableRow>
                                         ))}

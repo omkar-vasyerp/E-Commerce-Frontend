@@ -10,7 +10,6 @@ export const placeOrder = async (cartDetails, navigate) => {
         });
 
         if (response.ok) {
-            console.log(response);
             navigate("/my-orders");
         } else {
             console.error('Server error:', response.status);
@@ -33,11 +32,11 @@ export const getOrders = async () => {
             },
         });
 
-        console.log('Response status:', response.status);
+        // console.log('Response status:', response.status);
 
         if (response.ok) {
             const data = await response.json();
-            console.log('Response data:', data);
+            // console.log('Response data:', data);
             return data;
         } else {
             console.error('Server error:', response.status);
