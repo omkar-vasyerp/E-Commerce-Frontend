@@ -1,8 +1,8 @@
 .input-group{
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 .header{
-    background-color:#7D0A0A;
+    background-color:#000000;
     position: fixed;
     top: 0;
     width: 100%;
@@ -13,7 +13,7 @@
     text-align: left;
 }
 .logo span{
-    font-size: xxx-large;
+    font-size: xx-large;
     cursor: pointer;
 }
 

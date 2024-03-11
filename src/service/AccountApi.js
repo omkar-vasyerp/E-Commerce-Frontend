@@ -1,7 +1,7 @@
 import { useAuthContext } from "../context/AuthContext";
 
 export default function AccountApi() {
-  const { login ,register} = useAuthContext();
+  const {login ,register,user} = useAuthContext();
 
   const Register = async (formData, navigate) => {
     try {
@@ -17,6 +17,7 @@ export default function AccountApi() {
         const responseData = await response.json();
         console.log('Server response:', responseData);
         register(responseData.token)
+        user(responseData.userId);
         navigate("/")
       } else {
         console.error('Server error:', response.status);
@@ -38,11 +39,10 @@ export default function AccountApi() {
       });
 
       if (response.ok) {
-
-        const responseData = await response.json();
-        // console.log('Server response:', responseData);
-        console.log('4popopoppo');
+       debugger; const responseData = await response.json();
         login(responseData.token)
+        console.log(responseData);
+        user(responseData.userId);
         navigate("/")
       } else {
         console.error('Server error:', response.status);

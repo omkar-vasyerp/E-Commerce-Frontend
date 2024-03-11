@@ -1,14 +1,13 @@
 .main-container {
-     margin-Top: 154px;
+    margin-Top: 114px;
     display: flex;
-     justify-Content: center; 
-      min-Height: 100vh;
+    justify-Content: center;
+    min-Height: 100vh;
 }
 
 .product-container {
     width: 93%;
 }
-
 
 .addCart-btn {
     background-color: #070604;
@@ -17,7 +16,7 @@
 }
 
 .addCart-btn:hover {
-    background-color: #7D0A0A;
+    background-color: #393939;
 }
 
 .cart-btn {

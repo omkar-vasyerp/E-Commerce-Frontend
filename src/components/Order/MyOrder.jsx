@@ -30,7 +30,6 @@ export default function MyOrder() {
         setExpanded(isExpanded ? panel : false);
     };
     return (
-        console.log(orderDetails),
         <div className="order-container">
             <Container maxWidth="md">
                 <Paper elevation={3} style={{ padding: 16, marginTop: 64 }}>
@@ -38,7 +37,7 @@ export default function MyOrder() {
                         My Orders
                     </Typography>
                     <hr></hr>
-                    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                    <div style={{ display: 'flex',paddingLeft:'inherit', justifyContent: 'space-around' }}>
                                 <h5> Date</h5>
                                 <h5> Price</h5>
                                 <h5> Status</h5>

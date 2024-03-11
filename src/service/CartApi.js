@@ -1,10 +1,14 @@
 import { useAuthContext } from "../context/AuthContext";
 
-export default function CartApi() {
-    const { token } = useAuthContext();
+ export default function CartApi() {
+    const { token, userId } = useAuthContext();
 
     const AddToCart = async (updatedProduct) => {
-        const cartUrl = `http://localhost:8080/cart?userId=1`;
+        if (!userId) {
+            console.error('User ID is undefined');
+            return;
+        }
+        const cartUrl = `http://localhost:8080/cart?userId=${userId}`;
 
         const addToCartDto = {
             'productId': updatedProduct.productId,
@@ -31,7 +35,11 @@ export default function CartApi() {
     };
 
     const RemoveFromCart = async (productId) => {
-        const cartUrl = `http://localhost:8080/cart?userId=1&productId=${productId}`;
+        if (!userId) {
+            console.error('User ID is undefined');
+            return;
+        }
+        const cartUrl = `http://localhost:8080/cart?userId=${userId}&productId=${productId}`;
         try {
             const response = await fetch(cartUrl, {
                 method: 'DELETE',
@@ -53,8 +61,12 @@ export default function CartApi() {
     };
 
     const GetCartDetails = async () => {
+        if (!userId) {
+            console.error('User ID is undefined');
+            return;
+        }
         try {
-            const response = await fetch(`http://localhost:8080/cart?userId=1`, {
+            const response = await fetch(`http://localhost:8080/cart?userId=${userId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -70,6 +82,7 @@ export default function CartApi() {
             return null;
         }
     };
+
     return {
         AddToCart,
         GetCartDetails,

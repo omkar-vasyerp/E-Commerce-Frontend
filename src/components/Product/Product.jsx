@@ -55,21 +55,23 @@ const ProductList = () => {
                         direction="row">
                         {products.map(product => (
                             <Grid key={product.productId} item='true'>
-                                <Card sx={{ width: 315,  transition: 'transform 0.2s' }}>
+                                <Card sx={{ width: 330, transition: 'transform 0.2s' }}>
                                 <Link to={`/product-detail/${product.productId}`}>
                                         <CardMedia
                                             component="img"
-                                            height="300"    
+                                            height="350"
+                                                
                                             image={product.productImage}
                                             sx={{
                                                 objectFit: 'cover',
-                                                p: 2,
-                                                transition: 'transform 0.2s'  // Apply the transition to the image as well
+                                                p:0.5,
+                                                backgroundColor:'#393939',
+                                                transition: 'transform 0.2s'  
                                             }}
                                             onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                                             onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                                         />
-                                        <CardContent >
+                                        <CardContent style={{ backgroundColor:'#191919',color:'white'}}>
                                             <Typography gutterBottom variant="h7" component="div">
                                                 {product.productName}
                                             </Typography>
@@ -83,7 +85,7 @@ const ProductList = () => {
                                             </Typography>
                                         </CardContent>
                                     </Link>
-                                    <CardActions sx={{ justifyContent: 'center', marginTop: -2, marginBottom: 2 }}>
+                                    <CardActions sx={{ justifyContent: 'center', marginTop: -2, backgroundColor:'#191919' }}>
                                         <a className='addCart-btn' href='/' onClick={(e) => {
                                             e.preventDefault();
                                             handleAddToCart(product.productId);
