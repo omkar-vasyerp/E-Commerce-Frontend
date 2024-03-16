@@ -1,16 +1,14 @@
 .navbar{
     background-color: white;
     position: fixed;
-    top:77px;
+    top:57px;
     z-index: 1000;
     width: 100%;
 }
 .nav-item{
-    padding-right: 50px;
+    padding-left: 100px;
 }
-.container-fluid{
-    width: 1200px;
-}
+
 a{
     font-weight: 600;
     color: black;

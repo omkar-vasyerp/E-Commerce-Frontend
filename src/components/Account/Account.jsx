@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Popover, List, ListItem, ListItemText } from '@mui/material';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import {  useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContext';
 const Account = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const {token,logout}=useAuthContext();
     const navigate = useNavigate();
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
@@ -12,9 +14,15 @@ const Account = () => {
         setAnchorEl(null);
     };
     const handleLogout = () => {
-
+        logout();
+        navigate('/login')
     };
+<<<<<<< HEAD
     let loggedIn = false;
+=======
+
+    let loggedIn=!!token;
+>>>>>>> f7b280795ef5d2ec9eae9cb39104668303c82095
 
     const loggedInDropdown = (
         <List>
@@ -24,7 +32,7 @@ const Account = () => {
             <ListItem button onClick={()=>{navigate("/my-orders")}}>
                 <ListItemText primary="My Orders" />
             </ListItem>
-            <ListItem button onClick={handleLogout()}>
+            <ListItem button onClick={()=>handleLogout()}>
                 <ListItemText primary="Logout" />
             </ListItem>
         </List>
@@ -37,7 +45,6 @@ const Account = () => {
             <ListItem button onClick={()=>{navigate("/login")}}>
                 <ListItemText primary="Login" />
             </ListItem>
-
         </List>
     );
 

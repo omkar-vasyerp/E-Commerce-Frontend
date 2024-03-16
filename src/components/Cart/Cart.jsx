@@ -3,17 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { Container, Paper, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { useAppContext } from '../../context/Appcontext';
 import { SyncLoader } from 'react-spinners';
-import { getCartDetails, removeFromCart } from '../../service/CartApi';
-import { placeOrder } from '../../service/OrderApi';
 import { useNavigate } from 'react-router-dom';
+import CartApi from '../../service/CartApi';
+import OrderApi from '../../service/OrderApi';
 export default function Cart() {
 
     const { loading, setLoading,cartDetails, setCartDetails } = useAppContext();
     const [cartUpdated, setCartUpdated] = useState(false);
-
+    const{RemoveFromCart,GetCartDetails}=CartApi();
     const navigate =useNavigate();
+    const {PlaceOrder} = OrderApi();
     const getCart=()=>{
-        getCartDetails()
+        GetCartDetails()
         .then(data => {
             setCartDetails(data);
             setLoading(false);
@@ -29,7 +30,7 @@ export default function Cart() {
         getCart()
     }, [cartUpdated]);
     const handleRemoveFromCart = (productId) => {
-        removeFromCart(productId);
+        RemoveFromCart(productId);
         setCartUpdated(prevState => !prevState);
     };
 
@@ -40,7 +41,7 @@ export default function Cart() {
     }, [cartUpdated, setLoading]);
 
     const checkOutOrder=()=>{
-        placeOrder(cartDetails, navigate);
+        PlaceOrder(cartDetails, navigate);
     }
 
     return (
@@ -71,14 +72,14 @@ export default function Cart() {
                                         {cartDetails.cartItems.map((item) => (
                                             <TableRow key={item.productId}>
                                                 <TableCell>
-                                                    <img src={item.productImage} alt={item.productName} style={{ width: '50px', borderRadius: 8 }} />
+                                                    <img src={item.productImage} alt={item.productImage} style={{ width: '50px', borderRadius: 8 }} />
                                                 </TableCell>
                                                 <TableCell>{item.productName}</TableCell>
                                                 <TableCell>{item.quantity}</TableCell>
-                                                <TableCell>${item.unitPrice.toFixed(2)}</TableCell>
-                                                <TableCell>${item.price.toFixed(2)}</TableCell>
+                                                <TableCell>&#8377;{item.unitPrice.toFixed(2)}</TableCell>
+                                                <TableCell>&#8377;{item.price.toFixed(2)}</TableCell>
                                                 <TableCell onClick={() => handleRemoveFromCart(item.productId)}> <Button variant="outlined" color="secondary">
-                                                    Remove
+                                                    Remove  
                                                 </Button></TableCell>
                                             </TableRow>
                                         ))}
@@ -89,7 +90,7 @@ export default function Cart() {
                             <Typography variant="h6" style={{ marginTop: 16, marginRight: 100, textAlign: 'end' }}>
                                 Total Items: {cartDetails.totalQuantities}
                             </Typography>
-                            <Typography variant="h6" style={{ marginRight: 100, textAlign: 'end' }}>Total Price: ${cartDetails.totalPrice.toFixed(2)}</Typography>
+                            <Typography variant="h6" style={{ marginRight: 100, textAlign: 'end' }}>Total Price: &#8377;{cartDetails.totalPrice.toFixed(2)}</Typography>
                             <Button variant="contained" onClick={()=>checkOutOrder()} color="primary" style={{ marginTop: 16 }}>
                                 Checkout
                             </Button>
