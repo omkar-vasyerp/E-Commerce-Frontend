@@ -14,7 +14,7 @@ const Account = () => {
     const handleLogout = () => {
 
     };
-    let loggedIn = true;
+    let loggedIn = false;
 
     const loggedInDropdown = (
         <List>

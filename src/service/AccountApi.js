@@ -32,6 +32,7 @@ try {
         body: JSON.stringify(formData),
     });
 
+    
     if (response.ok) {
         const responseData = await response.json();
         console.log('Server response:', responseData);
