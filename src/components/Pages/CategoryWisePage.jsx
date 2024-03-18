@@ -23,9 +23,9 @@ export default function CategoryWisePage() {
                     <SyncLoader color="#36D7B7" size={15} margin={5} loading={loading} />
                 </div>
             ) :(
-                <div>
+                <div style={{ maxWidth: "100%", overflow: "hidden" }}>
                     <img src={category.categoryBanner} alt={category.categoryName}
-                     style={{ height: 500,width:1519 }} 
+                     style={{ width: "100%", height: "auto"}} 
                     />
                     <ProductList/>
                 </div>
