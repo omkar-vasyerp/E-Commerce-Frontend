@@ -3,7 +3,7 @@ import { useAuthContext } from "../context/AuthContext";
  export default function CartApi() {
     const { token, userId } = useAuthContext();
 
-    const AddToCart = async (updatedProduct) => {
+    const AddToCart = async (productId) => {
         if (!userId) {
             console.error('User ID is undefined');
             return;
@@ -11,7 +11,7 @@ import { useAuthContext } from "../context/AuthContext";
         const cartUrl = `http://localhost:8080/cart?userId=${userId}`;
 
         const addToCartDto = {
-            'productId': updatedProduct.productId,
+            'productId': productId,
             'quantity': 1,
         };
         try {

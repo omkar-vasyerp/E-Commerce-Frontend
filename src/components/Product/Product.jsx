@@ -10,18 +10,19 @@ import Grid from '@mui/material/Unstable_Grid2';
 import './Product.css';
 import { SyncLoader } from 'react-spinners';
 import { useAppContext } from '../../context/Appcontext';
-import CartApi  from '../../service/CartApi';
+import CartApi from '../../service/CartApi';
 import { GetProduct } from '../../service/ProductApi';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const ProductList = () => {
     const { categoryId, searchProduct, loading, setLoading } = useAppContext();
     const [products, setProducts] = useState([]);
-    const{AddToCart} =CartApi();
+    const { AddToCart } = CartApi();
     useEffect(() => {
         setLoading(true);
-        GetProduct(categoryId,searchProduct)
+        GetProduct(categoryId, searchProduct)
             .then(data => {
                 setProducts(data);
                 setLoading(false);
@@ -30,20 +31,15 @@ const ProductList = () => {
                 console.error('Error fetching products', error);
                 setLoading(false);
             });
-    }, [searchProduct, setLoading,categoryId]);
+    }, [searchProduct, setLoading, categoryId]);
 
     const handleAddToCart = (productId) => {
-        setProducts(prevProducts => prevProducts.map(product => {
-            if (product.productId === productId) {
-                const updatedProduct = { ...product, addedToCart: !product.addedToCart };
-                AddToCart(updatedProduct);
-                return updatedProduct;
-            }
-            return product;
-        }));
-    };
-    
+        AddToCart(productId);
+        toast("Added to Cart");
+    };    
     return (
+        <>
+        
         <div className='main-container'>
             {loading ? (
                 <div style={{ textAlign: 'center', marginTop: '250px' }}>
@@ -55,24 +51,25 @@ const ProductList = () => {
                         direction="row">
                         {products.map(product => (
                             <Grid key={product.productId} item='true'>
-                                <Card sx={{ width: 330, transition: 'transform 0.2s' }}>
-                                <Link to={`/product-detail/${product.productId}`}>
+                                <Card sx={{ width: 410, height: 460, transition: 'transform 0.2s', backgroundColor: '#191919' }}>
+                                    <Link to={`/product-detail/${product.productId}`}>
                                         <CardMedia
-                                            component="img"
-                                            height="350"
-                                                
-                                            image={product.productImage}
-                                            sx={{
-                                                objectFit: 'cover',
-                                                p:0.5,
-                                                backgroundColor:'#393939',
-                                                transition: 'transform 0.2s'  
-                                            }}
+                                             height="260" 
+                                             sx={{
+                                                 p: 2,
+                                                 width:'300',
+                                                 borderRadius: 5,
+                                                 backgroundColor: '#393939', 
+                                                 transition: 'transform 0.2s'
+                                             }}
+                                             
                                             onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                                             onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                                        />
-                                        <CardContent style={{ backgroundColor:'#191919',color:'white'}}>
-                                            <Typography gutterBottom variant="h7" component="div">
+                                        >
+                                            <div><img height={225} src={product.productImage} alt="" /></div>
+                                        </CardMedia>
+                                        <CardContent style={{ backgroundColor: '#191919', color: 'white' }}>
+                                            <Typography className='product-name' gutterBottom variant="h7" component="div">
                                                 {product.productName}
                                             </Typography>
                                             {/* <Typography textAlign={'start'} fontSize={15} color="text.secondary">
@@ -80,20 +77,20 @@ const ProductList = () => {
                                                 <li>highlight no. 1</li>
                                                 <li>highlight no. 2</li>
                                             </Typography> */}
-                                            <Typography textAlign={'start'}  color="text">
+                                            <Typography textAlign={'start'} color="text">
                                                 &#8377;{product.price}
                                             </Typography>
                                         </CardContent>
                                     </Link>
-                                    <CardActions sx={{ justifyContent: 'center', marginTop: -2, backgroundColor:'#191919' }}>
-                                        <a className='addCart-btn' href='/' onClick={(e) => {
-                                            e.preventDefault();
+                                    <CardActions sx={{ justifyContent: 'center', marginTop: -2, backgroundColor: '#191919' }}>
+                                        <Link className='addCart-btn' onClick={(e) => {
+
                                             handleAddToCart(product.productId);
                                         }}>
                                             <Button className='cart-btn' >
                                                 Add To Cart
                                             </Button>
-                                        </a>
+                                        </Link>
                                     </CardActions>
                                 </Card>
                             </Grid>
@@ -101,10 +98,10 @@ const ProductList = () => {
                     </Grid>
                 </div>
             ) : (
-                <p>No products available right now !!!</p>
+                <p color='white'>No products available right now !!!</p>
             )}
         </div>
-
+        </>
     );
 };
 

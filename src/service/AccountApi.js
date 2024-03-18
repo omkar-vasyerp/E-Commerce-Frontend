@@ -14,7 +14,7 @@ export default function AccountApi() {
       });
 
       if (response.ok) {
-        const responseData = await response.json();
+         const responseData = await response.json();
         console.log('Server response:', responseData);
         register(responseData.token)
         user(responseData.userId);
@@ -39,7 +39,7 @@ export default function AccountApi() {
       });
 
       if (response.ok) {
-       debugger; const responseData = await response.json();
+        const responseData = await response.json();
         login(responseData.token)
         console.log(responseData);
         user(responseData.userId);
