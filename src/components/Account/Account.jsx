@@ -17,8 +17,12 @@ const Account = () => {
         logout();
         navigate('/login')
     };
+<<<<<<< HEAD
+    let loggedIn = false;
+=======
 
     let loggedIn=!!token;
+>>>>>>> f7b280795ef5d2ec9eae9cb39104668303c82095
 
     const loggedInDropdown = (
         <List>
