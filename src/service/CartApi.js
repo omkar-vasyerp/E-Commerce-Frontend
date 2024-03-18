@@ -59,6 +59,31 @@ import { useAuthContext } from "../context/AuthContext";
 
         }
     };
+    const SubtractFromCart = async (productId) => {
+        if (!userId) {
+            console.error('User ID is undefined');
+            return;
+        }
+        const cartUrl = `http://localhost:8080/cart/${productId}?userId=${userId}`;
+        try {
+            const response = await fetch(cartUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+            if (response.ok) {
+
+                console.log('Cart updated on server:', response);
+            } else {
+                console.error('Server error:', response.status);
+            }
+        } catch (error) {
+            console.error('Error updating cart on server:', error);
+
+        }
+    };
 
     const GetCartDetails = async () => {
         if (!userId) {
@@ -86,6 +111,7 @@ import { useAuthContext } from "../context/AuthContext";
     return {
         AddToCart,
         GetCartDetails,
-        RemoveFromCart
+        RemoveFromCart,
+        SubtractFromCart
     };
 }

@@ -16,7 +16,7 @@ export default function HomePage() {
     }, [setCategory]);
     return (
         <>
-        <div style={{ marginTop: 57, display: 'flex', backgroundColor: 'black', justifyContent: 'center', paddingTop: 50 }}>
+        <div style={{ marginTop: 57, display: 'flex', flexFlow:'wrap', backgroundColor: 'black', justifyContent: 'center', paddingTop: 50 }}>
 
             {category.map(category => (
                 <div>

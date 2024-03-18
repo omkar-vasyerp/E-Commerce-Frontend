@@ -11,7 +11,7 @@ export default function Cart() {
 
     const { loading, setLoading, cartDetails, setCartDetails } = useAppContext();
     const [cartUpdated, setCartUpdated] = useState(false);
-    const { RemoveFromCart, GetCartDetails } = CartApi();
+    const { RemoveFromCart, GetCartDetails, AddToCart , SubtractFromCart} = CartApi();
     const navigate = useNavigate();
     const { PlaceOrder } = OrderApi();
     const getCart = () => {
@@ -35,6 +35,14 @@ export default function Cart() {
         setCartUpdated(prevState => !prevState);
     };
 
+    const handleAddToCart = (productId) => {
+        AddToCart(productId);
+        setCartUpdated(prevState => !prevState);
+    };
+    const handleSubtractFromCart = (productId) => {
+        SubtractFromCart(productId);
+        setCartUpdated(prevState => !prevState);
+    };
     useEffect(() => {
         if (cartUpdated) {
             getCart()
@@ -79,7 +87,11 @@ export default function Cart() {
                                                         <img src={item.productImage} alt={item.productImage} style={{ width: '50px', borderRadius: 8 }} />
                                                     </TableCell>
                                                     <TableCell>{item.productName}</TableCell>
-                                                    <TableCell>{item.quantity}</TableCell>
+                                                    <TableCell><div style={{display:'flex'}}>
+                                                        <button className='inc-dec' onClick={()=>handleSubtractFromCart(item.productId)}>-</button>
+                                                       <p> {item.quantity}</p>
+                                                        <button className='inc-dec' onClick={()=>handleAddToCart(item.productId)}>+</button>
+                                                        </div></TableCell>
                                                     <TableCell>&#8377;{item.unitPrice.toFixed(2)}</TableCell>
                                                     <TableCell>&#8377;{item.price.toFixed(2)}</TableCell>
                                                     <TableCell onClick={() => handleRemoveFromCart(item.productId)}> <Button variant="outlined" color="secondary">
