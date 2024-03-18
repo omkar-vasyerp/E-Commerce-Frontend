@@ -12,14 +12,22 @@ import { SyncLoader } from 'react-spinners';
 import { useAppContext } from '../../context/Appcontext';
 import CartApi from '../../service/CartApi';
 import { GetProduct } from '../../service/ProductApi';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 
 const ProductList = () => {
-    const { categoryId, searchProduct, loading, setLoading } = useAppContext();
+    const { categoryId, loading, setLoading } = useAppContext();
     const [products, setProducts] = useState([]);
     const { AddToCart } = CartApi();
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    let searchProduct = searchParams.get('search');
+    if (searchProduct === null) {
+        // Set searchProduct to an empty string
+        searchProduct = '';
+    }
     useEffect(() => {
         setLoading(true);
         GetProduct(categoryId, searchProduct)
@@ -31,7 +39,7 @@ const ProductList = () => {
                 console.error('Error fetching products', error);
                 setLoading(false);
             });
-    }, [searchProduct, setLoading, categoryId]);
+    }, [ setLoading, categoryId]);
 
     const handleAddToCart = (productId) => {
         AddToCart(productId);

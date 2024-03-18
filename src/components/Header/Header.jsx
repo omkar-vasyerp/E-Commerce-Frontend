@@ -40,9 +40,9 @@ function Header() {
                     </div>
                     <div className="col header-right">
                         <div>
-                            <form className="input-group">
+                            <form onSubmit={()=>{setSearchProduct(searchProduct); navigate('/')}} className="input-group">
                                 <input value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} type="search" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name='search' />
-                                <button type="button" className="btn btn-light" >Search</button>
+                                <button type="submit" className="btn btn-light" >Search</button>
                             </form>
                         </div>
                         <div >

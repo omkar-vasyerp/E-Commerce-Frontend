@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 
 export default function AccountApi() {
-  const {login ,register,user} = useAuthContext();
+  const {login ,register,user, logout} = useAuthContext();
+  const [tokenExpirationTimer, setTokenExpirationTimer] = useState(null);
 
   const Register = async (formData, navigate) => {
     try {
@@ -19,6 +21,7 @@ export default function AccountApi() {
         register(responseData.token)
         user(responseData.userId);
         navigate("/")
+        
       } else {
         console.error('Server error:', response.status);
 
@@ -57,6 +60,33 @@ export default function AccountApi() {
       console.error('Error submitting form:', error);
     }
   }
+
+    // Function to start the token expiration timer
+    const startTokenExpirationTimer = (expirationTime) => {
+      const timer = setTimeout(() => {
+        logout();
+        setTokenExpirationTimer(null);
+      }, expirationTime * 1000); // Convert expiration time to milliseconds
+      setTokenExpirationTimer(timer);
+    };
+  
+    // Effect to start the token expiration timer when user logs in
+    useEffect(() => {
+      if (user) {
+        const expirationTime = 60*60;
+          startTokenExpirationTimer(expirationTime);
+      }
+    }, [user]);
+  
+    // Cleanup the token expiration timer on component unmount
+    useEffect(() => {
+      return () => {
+        if (tokenExpirationTimer) {
+          clearTimeout(tokenExpirationTimer);
+        }
+      };
+    }, [tokenExpirationTimer]);
+
   return {
     Register,
     Login1

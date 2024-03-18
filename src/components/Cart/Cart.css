@@ -2,6 +2,16 @@
     margin-top: 134px;
     background-color: white;
 }
-.inc-dec{
-    padding: 0px 5px;
+
+.qauntity{
+    display: flex ; 
+    
+    justify-content: space-between;
+}
+.qauntity button{
+    border: none;
+    background-color: white;
+}
+.qauntity span{
+    padding-top: 2px;
 }

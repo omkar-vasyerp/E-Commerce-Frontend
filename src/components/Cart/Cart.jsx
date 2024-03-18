@@ -6,7 +6,8 @@ import { SyncLoader } from 'react-spinners';
 import { useNavigate } from 'react-router-dom';
 import CartApi from '../../service/CartApi';
 import OrderApi from '../../service/OrderApi';
-import { Padding } from '@mui/icons-material';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 export default function Cart() {
 
     const { loading, setLoading, cartDetails, setCartDetails } = useAppContext();
@@ -87,11 +88,13 @@ export default function Cart() {
                                                         <img src={item.productImage} alt={item.productImage} style={{ width: '50px', borderRadius: 8 }} />
                                                     </TableCell>
                                                     <TableCell>{item.productName}</TableCell>
-                                                    <TableCell><div style={{display:'flex'}}>
-                                                        <button className='inc-dec' onClick={()=>handleSubtractFromCart(item.productId)}>-</button>
-                                                       <p> {item.quantity}</p>
-                                                        <button className='inc-dec' onClick={()=>handleAddToCart(item.productId)}>+</button>
-                                                        </div></TableCell>
+                                                    <TableCell >
+                                                        <div className='qauntity'>
+                                                        <button  onClick={()=>handleSubtractFromCart(item.productId)}><IndeterminateCheckBoxIcon /></button>
+                                                       <span> {item.quantity}</span>
+                                                        <button  onClick={()=>handleAddToCart(item.productId)}><AddBoxIcon /></button>
+                                                        </div> 
+                                                        </TableCell>
                                                     <TableCell>&#8377;{item.unitPrice.toFixed(2)}</TableCell>
                                                     <TableCell>&#8377;{item.price.toFixed(2)}</TableCell>
                                                     <TableCell onClick={() => handleRemoveFromCart(item.productId)}> <Button variant="outlined" color="secondary">
