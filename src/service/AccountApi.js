@@ -61,31 +61,6 @@ export default function AccountApi() {
     }
   }
 
-    // Function to start the token expiration timer
-    const startTokenExpirationTimer = (expirationTime) => {
-      const timer = setTimeout(() => {
-        logout();
-        setTokenExpirationTimer(null);
-      }, expirationTime * 1000); // Convert expiration time to milliseconds
-      setTokenExpirationTimer(timer);
-    };
-  
-    // Effect to start the token expiration timer when user logs in
-    useEffect(() => {
-      if (user) {
-        const expirationTime = 60*60;
-          startTokenExpirationTimer(expirationTime);
-      }
-    }, [user]);
-  
-    // Cleanup the token expiration timer on component unmount
-    useEffect(() => {
-      return () => {
-        if (tokenExpirationTimer) {
-          clearTimeout(tokenExpirationTimer);
-        }
-      };
-    }, [tokenExpirationTimer]);
 
   return {
     Register,
