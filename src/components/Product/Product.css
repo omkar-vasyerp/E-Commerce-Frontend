@@ -22,7 +22,9 @@
 .cart-btn {
     color: white !important;
 }
-
+p{
+    color: white;
+}
 a {
     text-decoration: none;
 }

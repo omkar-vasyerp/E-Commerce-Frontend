@@ -20,14 +20,13 @@ const ProductList = () => {
     const { categoryId, loading, setLoading } = useAppContext();
     const [products, setProducts] = useState([]);
     const { AddToCart } = CartApi();
-
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     let searchProduct = searchParams.get('search');
     if (searchProduct === null) {
-        // Set searchProduct to an empty string
         searchProduct = '';
     }
+    
     useEffect(() => {
         setLoading(true);
         GetProduct(categoryId, searchProduct)
@@ -39,7 +38,7 @@ const ProductList = () => {
                 console.error('Error fetching products', error);
                 setLoading(false);
             });
-    }, [ setLoading, categoryId]);
+    }, [ searchProduct,setLoading, categoryId]);
 
     const handleAddToCart = (productId) => {
         AddToCart(productId);
@@ -106,7 +105,7 @@ const ProductList = () => {
                     </Grid>
                 </div>
             ) : (
-                <p color='white'>No products available right now !!!</p>
+                <p>No products available right now !!!</p>
             )}
         </div>
         </>

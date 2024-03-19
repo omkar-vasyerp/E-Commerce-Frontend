@@ -1,0 +1,25 @@
+.page-content {
+    margin-top: 57px;
+}
+
+.category-sym {
+    display: flex;
+    flex-Flow: wrap;
+    background-Color: black;
+    justify-Content: center;
+    padding-Top: 40px;
+}
+
+.search-container {
+    background-color: #191919;
+}
+.search-results{
+    text-align: start;
+}
+.search-results span{
+padding-left: 40px;
+color: white;
+font-size: xx-large;
+}
+
+

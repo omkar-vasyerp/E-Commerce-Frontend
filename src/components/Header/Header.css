@@ -16,11 +16,11 @@
     font-size: xx-large;
     cursor: pointer;
 }
-
 .header-right{
     display: flex;
    align-items: center;
     justify-content: space-evenly;
+    padding: 10px 0px;
 }
 .header-icons{
     display: flex;

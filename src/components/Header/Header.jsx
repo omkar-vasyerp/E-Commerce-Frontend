@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
 
@@ -6,31 +6,37 @@ import { IoCartSharp } from "react-icons/io5";
 import { useAppContext } from '../../context/Appcontext';
 import Account from '../Account/Account';
 import { useNavigate } from 'react-router-dom';
-import CartApi from '../../service/CartApi';
+// import CartApi from '../../service/CartApi';
 import { useAuthContext } from '../../context/AuthContext';
 
 
 function Header() {
-    const { searchProduct, setSearchProduct, cartDetails, setCartDetails, setCategoryId } = useAppContext();
-    const [cartCount, setCartCount] = useState(1);
-    const{token}=useAuthContext();
-    const{GetCartDetails} =CartApi();
-    let isLoggedIn =!!token;
+    const { setCategoryId } = useAppContext();
+    // const [cartCount, setCartCount] = useState(1);
+    const [searchQuery, setSearchQuery] = useState('');
+    const { token } = useAuthContext();
+    // const{GetCartDetails} =CartApi();
+    let isLoggedIn = !!token;
     const navigate = useNavigate();
 
-    //Not Working properly
-    useEffect(() => {
-        GetCartDetails()
-            .then(data => {
-                setCartDetails(data);
-                const totalItems = cartDetails.totalQuantities;
-                setCartCount(totalItems);
-            })
-            .catch(error => {
-                console.error('Error fetching Cart', error);
-            });
-    }, [setCartDetails,setCartCount])
+    // //Not Working properly
+    // useEffect(() => {
+    //     GetCartDetails()
+    //         .then(data => {
+    //             setCartDetails(data);
+    //             const totalItems = cartDetails.totalQuantities;
+    //             setCartCount(totalItems);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching Cart', error);
+    //         });
+    // }, [setCartDetails,setCartCount])
 
+    const handleSearch = () => {
+        if (searchQuery.trim() !== '') {
+            navigate(`/search?search=${encodeURIComponent(searchQuery)}`);
+        }
+    }
     return (
         <div className='header'>
             <div className='container'>
@@ -39,11 +45,22 @@ function Header() {
                         <span onClick={() => { navigate("/"); setCategoryId(0); }}>LOGO</span>
                     </div>
                     <div className="col header-right">
-                        <div>
-                            <form onSubmit={()=>{setSearchProduct(searchProduct); navigate('/')}} className="input-group">
-                                <input value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} type="search" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name='search' />
-                                <button type="submit" className="btn btn-light" >Search</button>
-                            </form>
+                        <div style={{display: 'flex'}}>
+                            <input
+                                type="search"
+                                className="form-control"
+                                placeholder="Search"
+                                aria-label="Search"
+                                aria-describedby="search-addon"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)} 
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        handleSearch();
+                                    }
+                                }}
+                            />
+                            <button className="btn btn-light" onClick={handleSearch}>Search</button>
                         </div>
                         <div >
                             {isLoggedIn ? (
@@ -67,7 +84,7 @@ function Header() {
             <div className='header-icons'>
                 <div className='cart-icon' >
                     <IoCartSharp size={28} onClick={handleClick} />
-                    {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
+                    {/* {cartCount > 0 && <span className='cart-count'>{cartCount}</span>} */}
                 </div>
                 <Account />
             </div>

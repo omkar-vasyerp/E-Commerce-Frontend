@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+
 import { useAuthContext } from "../context/AuthContext";
 
 export default function AccountApi() {
-  const {login ,register,user, logout} = useAuthContext();
-  const [tokenExpirationTimer, setTokenExpirationTimer] = useState(null);
+  const { login, register, user } = useAuthContext();
+  
 
   const Register = async (formData, navigate) => {
     try {
@@ -16,12 +16,12 @@ export default function AccountApi() {
       });
 
       if (response.ok) {
-         const responseData = await response.json();
+        const responseData = await response.json();
         console.log('Server response:', responseData);
         register(responseData.token)
         user(responseData.userId);
         navigate("/")
-        
+
       } else {
         console.error('Server error:', response.status);
 
