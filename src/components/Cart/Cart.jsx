@@ -76,7 +76,7 @@ export default function Cart() {
                                             <TableRow>
                                                 <TableCell></TableCell>
                                                 <TableCell>Product Name</TableCell>
-                                                <TableCell>Quantity</TableCell>
+                                                <TableCell  style={{textAlign:'center'}}>Quantity</TableCell>
                                                 <TableCell>Unit Price</TableCell>
                                                 <TableCell>Total Price</TableCell>
                                             </TableRow>
@@ -90,7 +90,7 @@ export default function Cart() {
                                                     <TableCell>{item.productName}</TableCell>
                                                     <TableCell >
                                                         <div className='qauntity'>
-                                                        <button  onClick={()=>handleSubtractFromCart(item.productId)}><IndeterminateCheckBoxIcon /></button>
+                                                        <button  onClick={()=>handleSubtractFromCart(item.productId)} disabled={item.quantity === 1}><IndeterminateCheckBoxIcon  /></button>
                                                        <span> {item.quantity}</span>
                                                         <button  onClick={()=>handleAddToCart(item.productId)}><AddBoxIcon /></button>
                                                         </div> 
